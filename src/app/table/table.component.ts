@@ -13,9 +13,13 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.data = [
       {name: 'camilo', lastname: 'bello'},
-      {name: 'camilo', lastname: 'bello'},
-      {name: 'camilo', lastname: 'bello'},
+      {name: 'dayana', lastname: 'alejo'},
+      {name: 'lol', lastname: 'wow'},
     ];
+  }
+
+  save() {
+    console.log(this.data);
   }
 
 }
