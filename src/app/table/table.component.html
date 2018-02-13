@@ -1,0 +1,15 @@
+<p>
+  table works!
+</p>
+
+<table matSort>
+  <tr>
+    <th mat-sort-header="name">Name</th>
+    <th mat-sort-header="lastname">Lastname</th>
+  </tr>
+
+  <tr *ngFor="let item of data">    
+    <td><app-cell></app-cell></td>
+    <td><app-cell></app-cell></td>
+  </tr>
+</table>
