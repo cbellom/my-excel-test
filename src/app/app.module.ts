@@ -7,7 +7,7 @@ import { CellComponent } from './cell/cell.component';
 import { TableComponent } from './table/table.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatInputModule, MatButtonModule} from '@angular/material';
+import {MatInputModule, MatButtonModule, MatTooltipModule} from '@angular/material';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import {MatInputModule, MatButtonModule} from '@angular/material';
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

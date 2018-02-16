@@ -1,0 +1,6 @@
+.hasError {
+  background: rgb(185, 104, 104);
+}
+.selected {
+  background: rgb(180, 132, 168);
+}

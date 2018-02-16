@@ -12,7 +12,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     this.data = [
-      {name: 'camilo', lastname: 'bello'},
+      {name: 'camilo', lastname: 'bello', errors: {name: 'error 1', lastname: 'error 2'}},
       {name: 'dayana', lastname: 'alejo'},
       {name: 'lol', lastname: 'wow'},
     ];
@@ -20,6 +20,14 @@ export class TableComponent implements OnInit {
 
   save() {
     console.log(this.data);
+  }
+
+  getItemProperties(item) {
+    return Object.keys(item).filter((property) => property !== 'errors');
+  }
+
+  updateValue(item, property, value) {
+    item[property] = value;
   }
 
 }

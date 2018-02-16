@@ -9,11 +9,11 @@
   </tr>
 
   <tr *ngFor="let item of data">    
-    <td>
-      <app-cell [value]="item.name"></app-cell>
-    </td>
-    <td>
-      <app-cell [value]="item.lastname"></app-cell>
+    <td *ngFor="let property of getItemProperties(item)">
+      <app-cell 
+        [value]="item[property]"
+        [error]="item.errors && item.errors[property] ? item.errors[property] : null"
+        (onChange)="updateValue(item, property, $event)"></app-cell>
     </td>
   </tr>
 </table>

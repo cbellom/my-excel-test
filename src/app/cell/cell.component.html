@@ -1,5 +1,17 @@
-<button mat-button>
+<button 
+  mat-button 
+  matTooltipPosition="below"
+  [matTooltip]="_error" 
+  [class.selected]="_selected"
+  [class.hasError]="_error ? true : false" 
+  (focusin)="selectCell()"
+  (focusout)="unselectCell()" 
+  (mouseover)="_isMouseOver = true"
+  (mouseout)="_isMouseOver = false">
   <mat-form-field>
-    <input matInput value="{{_value}}">
+    <input #input 
+      matInput 
+      [value]="_value" 
+      (change)="change(input.value)">
   </mat-form-field>
 </button>
