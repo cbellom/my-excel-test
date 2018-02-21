@@ -11,17 +11,20 @@
     <input #input matInput 
       *ngIf="_type === Type.String" 
       [value]="_value"
+      [readonly]="!_editable"
       (change)="change(input.value)">
     
     <input #input matInput 
       *ngIf="_type === Type.Integer"
       type="number" 
       [value]="_value"
+      [readonly]="!_editable"
       (change)="change(input.value)">
 
     <input #input matInput 
       *ngIf="_type === Type.Currency" 
       [value]="_value"
+      [readonly]="!_editable"
       (change)="change(input.value)">
   </mat-form-field>
 

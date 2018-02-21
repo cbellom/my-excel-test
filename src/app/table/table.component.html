@@ -7,7 +7,12 @@
     <th *ngFor="let property of getItemProperties(properties)" mat-sort-header="property">{{properties[property].name}}</th>
   </tr>
 
-  <tr *ngFor="let item of data">    
+  <tr *ngFor="let item of data"> 
+    <td *ngIf="canDeleteRows">
+        <button mat-icon-button (click)="delete(item)">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </td>   
     <td *ngFor="let property of getItemProperties(item)">
       <app-cell 
         [value]="item[property]"

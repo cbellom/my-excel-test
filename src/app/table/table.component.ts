@@ -10,11 +10,15 @@ export class TableComponent implements OnInit {
   data: any[] = [];
   properties: any = {};
   validations: Validations[] = [];
+  canDeleteRows = true;
 
   constructor() { }
 
   ngOnInit() {
     this.properties = {
+      delete: {
+        name: '',
+      },
       name: {
         name: 'Nombre',
         editable: true,
@@ -40,6 +44,14 @@ export class TableComponent implements OnInit {
 
   save() {
     console.log(this.data);
+  }
+
+  delete(item) {
+    console.log(item);
+    const index = this.data.indexOf(item);
+    if (index !== -1) {
+      this.data.splice(index, 1);
+    }
   }
 
   getItemProperties(item) {
