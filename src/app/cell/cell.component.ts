@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Type } from '../models/enums/type.enum';
+import { Validations } from '../models/enums/validations.enum';
 
 @Component({
   selector: 'app-cell',
@@ -6,10 +8,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent implements OnInit {
+  public Type = Type;
+
   protected _value = '';
   protected _error: string = null;
+  protected _type: Type = Type.String;
+  protected _validations: Validations[] = [];
   protected _selected = false;
   protected _isMouseOver = false;
+  protected _editable = true;
 
   @Input()
   set value(value: string) {
@@ -22,6 +29,14 @@ export class CellComponent implements OnInit {
   @Input()
   set error(value: string) {
     this._error = value && value !== '' ? value : null;
+  }
+  @Input()
+  set validations(value: Validations[]) {
+    this._validations = value;
+  }
+  @Input()
+  set editable(value: boolean) {
+    this._editable = value;
   }
 
   // tslint:disable-next-line:no-output-on-prefix
@@ -45,7 +60,7 @@ export class CellComponent implements OnInit {
   }
 
   change(value) {
-    console.log(value);
+    console.log('Edit one cell to', value);
     this.onChange.next(value);
   }
 

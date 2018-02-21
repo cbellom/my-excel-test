@@ -4,14 +4,14 @@
 
 <table matSort>
   <tr>
-    <th mat-sort-header="name">Name</th>
-    <th mat-sort-header="lastname">Lastname</th>
+    <th *ngFor="let property of getItemProperties(properties)" mat-sort-header="property">{{properties[property].name}}</th>
   </tr>
 
   <tr *ngFor="let item of data">    
     <td *ngFor="let property of getItemProperties(item)">
       <app-cell 
         [value]="item[property]"
+        [editable]="properties[property].editable"
         [error]="item.errors && item.errors[property] ? item.errors[property] : null"
         (onChange)="updateValue(item, property, $event)"></app-cell>
     </td>

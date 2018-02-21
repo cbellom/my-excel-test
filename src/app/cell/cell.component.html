@@ -5,13 +5,24 @@
   [class.selected]="_selected"
   [class.hasError]="_error ? true : false" 
   (focusin)="selectCell()"
-  (focusout)="unselectCell()" 
-  (mouseover)="_isMouseOver = true"
-  (mouseout)="_isMouseOver = false">
+  (focusout)="unselectCell()" >
+  
   <mat-form-field>
-    <input #input 
-      matInput 
-      [value]="_value" 
+    <input #input matInput 
+      *ngIf="_type === Type.String" 
+      [value]="_value"
+      (change)="change(input.value)">
+    
+    <input #input matInput 
+      *ngIf="_type === Type.Integer"
+      type="number" 
+      [value]="_value"
+      (change)="change(input.value)">
+
+    <input #input matInput 
+      *ngIf="_type === Type.Currency" 
+      [value]="_value"
       (change)="change(input.value)">
   </mat-form-field>
+
 </button>

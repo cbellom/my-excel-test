@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Validations } from '../models/enums/validations.enum';
 
 @Component({
   selector: 'app-table',
@@ -7,14 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
   data: any[] = [];
+  properties: any = {};
+  validations: Validations[] = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.properties = {
+      name: {
+        name: 'Nombre',
+        editable: true,
+      },
+      lastname: {
+        name: 'Apellido',
+        editable: true,
+      },
+      age: {
+        name: 'Edad',
+        editable: false,
+      }
+    };
+
+
     this.data = [
-      {name: 'camilo', lastname: 'bello', errors: {name: 'error 1', lastname: 'error 2'}},
-      {name: 'dayana', lastname: 'alejo'},
-      {name: 'lol', lastname: 'wow'},
+      { name: 'camilo', lastname: 'bello', age: '10', errors: { name: 'error 1', lastname: 'error 2' } },
+      { name: 'dayana', lastname: 'alejo', age: '10', errors: { lastname: 'error 2' } },
+      { name: 'lol', lastname: 'wow', age: '10', errors: { name: 'error 1' } },
+      { name: '4n', lastname: 'seven', age: '20'},
     ];
   }
 
