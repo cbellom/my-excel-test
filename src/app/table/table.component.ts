@@ -6,15 +6,15 @@ import { Validations } from '../models/enums/validations.enum';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
   _data: any[] = [];
   _properties: any = {};
   _templateData: any = {};
   _validations: Validations[] = [];
 
+  _tableClass: string;
   _canDeleteRows = true;
   _canAddRows = true;
-
 
   @Input()
   set data(value: any[]) {
@@ -39,6 +39,10 @@ export class TableComponent implements OnInit {
   @Input()
   set canAddRows(value: boolean) {
     this._canAddRows = value;
+  }
+  @Input()
+  set tableClass(value: string) {
+    this._tableClass = value;
   }
 
   constructor() { }

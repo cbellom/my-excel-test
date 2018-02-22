@@ -1,4 +1,4 @@
-<table matSort>
+<table matSort [class]="_tableClass">
   <tr>
     <th *ngFor="let property of getItemProperties(_properties)" mat-sort-header="property">{{_properties[property].name}}</th>
   </tr>
@@ -10,7 +10,7 @@
         </button>
     </td>   
     <td *ngFor="let property of getItemProperties(item)">
-      <app-cell 
+      <app-cell
         [value]="item[property]"
         [editable]="_properties[property].editable"
         [error]="item.errors && item.errors[property] ? item.errors[property] : null"
