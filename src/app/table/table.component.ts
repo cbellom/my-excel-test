@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Validations } from '../models/enums/validations.enum';
 
 @Component({
@@ -7,51 +7,55 @@ import { Validations } from '../models/enums/validations.enum';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  data: any[] = [];
-  properties: any = {};
-  validations: Validations[] = [];
-  canDeleteRows = true;
+  _data: any[] = [];
+  _properties: any = {};
+  _templateData: any = {};
+  _validations: Validations[] = [];
+
+  _canDeleteRows = true;
+  _canAddRows = true;
+
+
+  @Input()
+  set data(value: any[]) {
+    this._data = value;
+  }
+  @Input()
+  set properties(value: any) {
+    this._properties = value;
+  }
+  @Input()
+  set templateData(value: any) {
+    this._templateData = value;
+  }
+  @Input()
+  set validations(value: Validations[]) {
+    this._validations = value;
+  }
+  @Input()
+  set canDeleteRows(value: boolean) {
+    this._canDeleteRows = value;
+  }
+  @Input()
+  set canAddRows(value: boolean) {
+    this._canAddRows = value;
+  }
 
   constructor() { }
 
-  ngOnInit() {
-    this.properties = {
-      delete: {
-        name: '',
-      },
-      name: {
-        name: 'Nombre',
-        editable: true,
-      },
-      lastname: {
-        name: 'Apellido',
-        editable: true,
-      },
-      age: {
-        name: 'Edad',
-        editable: false,
-      }
-    };
-
-
-    this.data = [
-      { name: 'camilo', lastname: 'bello', age: '10', errors: { name: 'error 1', lastname: 'error 2' } },
-      { name: 'dayana', lastname: 'alejo', age: '10', errors: { lastname: 'error 2' } },
-      { name: 'lol', lastname: 'wow', age: '10', errors: { name: 'error 1' } },
-      { name: '4n', lastname: 'seven', age: '20'},
-    ];
-  }
-
   save() {
-    console.log(this.data);
+    console.log(this._data);
   }
 
   delete(item) {
-    console.log(item);
-    const index = this.data.indexOf(item);
+    const index = this._data.indexOf(item);
     if (index !== -1) {
-      this.data.splice(index, 1);
+      this._data.splice(index, 1);
     }
+  }
+
+  add() {
+    this._data = this._data.concat(this._templateData);
   }
 
   getItemProperties(item) {

@@ -1,14 +1,10 @@
-<p>
-  table works!
-</p>
-
 <table matSort>
   <tr>
-    <th *ngFor="let property of getItemProperties(properties)" mat-sort-header="property">{{properties[property].name}}</th>
+    <th *ngFor="let property of getItemProperties(_properties)" mat-sort-header="property">{{_properties[property].name}}</th>
   </tr>
 
-  <tr *ngFor="let item of data"> 
-    <td *ngIf="canDeleteRows">
+  <tr *ngFor="let item of _data"> 
+    <td *ngIf="_canDeleteRows">
         <button mat-icon-button (click)="delete(item)">
             <mat-icon>clear</mat-icon>
         </button>
@@ -16,11 +12,12 @@
     <td *ngFor="let property of getItemProperties(item)">
       <app-cell 
         [value]="item[property]"
-        [editable]="properties[property].editable"
+        [editable]="_properties[property].editable"
         [error]="item.errors && item.errors[property] ? item.errors[property] : null"
         (onChange)="updateValue(item, property, $event)"></app-cell>
     </td>
   </tr>
 </table>
 
+<button mat-button *ngIf="_canAddRows" (click)="add()">Add</button>
 <button mat-button (click)="save()">Save</button>
